@@ -1,0 +1,5 @@
+schedule
+requests
+Pillow
+beautifulsoup4
+instabot

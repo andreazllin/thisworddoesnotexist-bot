@@ -21,8 +21,8 @@ class Scraper:
         return x
     
     def getContent(self):
-        #self.driver.get("https://www.thisworddoesnotexist.com/")
-        self.driver.get("https://l.thisworddoesnotexist.com/KNTV")
+        self.driver.get("https://www.thisworddoesnotexist.com/")
+        # self.driver.get("https://l.thisworddoesnotexist.com/bN3B")
         self.result = self.driver.page_source
         self.driver.quit()
         self.getDiv()

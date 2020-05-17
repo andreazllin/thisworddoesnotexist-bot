@@ -1,4 +1,5 @@
 from PIL import Image, ImageFont, ImageDraw
+from scraper import Scraper as S
 # Per convertire i file per i font in ttf: https://onlinefontconverter.com/
 
 def writeText(text, x, y, fontName, fontSize = 10, color = "white"):

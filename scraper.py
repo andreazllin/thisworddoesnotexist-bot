@@ -1,4 +1,5 @@
 from selenium import webdriver
+from bs4 import BeautifulSoup
 
 class Scraper:
     
@@ -10,6 +11,8 @@ class Scraper:
     def getContent(self):
         self.driver.get("https://www.thisworddoesnotexist.com/")
         self.result = self.driver.page_source
+        self.getDiv()
         
     def getDiv(self):
-        self.div ="sos"
+        soup = BeautifulSoup(self.result)
+        self.div = soup.find('div', attrs={'class':'inner'})

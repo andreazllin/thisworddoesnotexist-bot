@@ -2,7 +2,7 @@ from PIL import Image, ImageFont, ImageDraw
 from scraper import Scraper as Scrap
 from datetime import datetime
 
-# 0: main color; 1: text color; 2: type and example color
+# 0: background color; 1: text color; 2: type and example color
 colors = [(8, 8, 45, 255), (255, 255, 255, 255), (255, 255, 255, 128)]
 
 # New image, size 1080x1080, solid color HEX = #08082d // RGBa(8, 8, 45, 255)
@@ -20,7 +20,7 @@ scraper = Scrap()
 def drawText(text, coords, fontFile, fontSize=10, color=(255, 255, 255, 128)):
     font = ImageFont.truetype(fontFile, fontSize)
     draw = ImageDraw.Draw(img)
-    draw.text(coords, text, font=font, fill=color)
+    draw.multiline_text(coords, text, font=font, fill=color, align="left")
 
 
 if __name__ == "__main__":

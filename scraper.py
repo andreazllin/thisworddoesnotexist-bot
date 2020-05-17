@@ -9,7 +9,7 @@ class Scraper:
         self.data = {}
     
     def stringClean(self, x):
-        x= x.replace("\n", "")
+        x = x.replace("\n", "")
         x = x.strip()
         return x
     
@@ -21,7 +21,7 @@ class Scraper:
         
     def getDiv(self):
         soup = BeautifulSoup(self.result, features="html.parser")
-        self.data['title'] = soup.find('div', attrs={'id':'definition-word'}).text
+        self.data['word'] = soup.find('div', attrs={'id':'definition-word'}).text
         self.data['type'] = self.stringClean(soup.find('div', attrs={'id':'definition-pos'}).text)
         self.data['syllables'] = self.stringClean(soup.find('div', attrs={'id':'definition-syllables'}).text)
         self.data['definition'] = soup.find('div', attrs={'id':'definition-definition'}).text

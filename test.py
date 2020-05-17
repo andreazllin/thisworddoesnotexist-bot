@@ -1,25 +1,17 @@
 from PIL import Image, ImageFont, ImageDraw
-from scraper import Scraper as S
+from scraper import Scraper as Scrap
 # Per convertire i file per i font in ttf: https://onlinefontconverter.com/
 
-def writeText(text, x, y, fontName, fontSize = 10, color = "white"):
-    font = ImageFont.truetype(fontName, fontSize)
-    draw = ImageDraw.Draw(image)
+fontFile = "font/Helvetica.ttf"
+img = Image.new('RGB', (1080, 1080), (8, 8, 45))
+scraper = Scrap()
+def writeText(text, x, y, fontName, fontSize=10, color="white"):
+    font = ImageFont.truetype(fontFile, fontSize)
+    draw = ImageDraw.Draw(img)
     draw.text((x, y), text, font=font, fill=color)
-    pass
-
-def main():
-    writeText("manifestogenesis", 10, 10, fontName, fontSize = 500, color = "white")
-    image.save("sasso_finale.png")
-    image.show()
-    pass
 
 if __name__ == "__main__":
-    inputFile = "imgs/bg.png"
-    outputFile = "imgs/sasso.png"
-    fontName = "font/Helvetica.ttf"
-    image = Image.open(inputFile)
-    scraper = S()
+        # New image, size 1080x1080, solid color HEX = #08082d // RGB(8, 8, 45)
     scraper.getContent()
-    print(scraper.data)
-    main()
+    writeText(scraper.data['title'], 10, 10, fontFile, fontSize=75, color="white")
+    img.show()

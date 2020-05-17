@@ -22,24 +22,23 @@ def drawText(text, coords, fontFile, fontSize, color=(255, 255, 255, 128)):
     draw.text(coords, text, font=font, fill=color, align="left")
 """
 
-
-def drawMultipleLineText(text, fontFile, fontSize, color=(255, 255, 255, 128), iterator=1):
+def drawMultipleLineText(text, fontFile, fontSize, sassone, color, iterator):
     font = ImageFont.truetype(fontFile, fontSize)
     draw = ImageDraw.Draw(img)
 
     # Image Size
     imgWidth, imgHeight = img.size
 
-    textY = 50 # Y position where it starts
+    textY = 0 # Y position where it starts
 
     lines = textwrap.wrap(text, width=60)
 
-    for line in lines:
+    for index, line in enumerate(lines):
         lineWidth, lineHeight = font.getsize(line)
 
         print(font.getsize(line))
-        draw.multiline_text(((imgWidth - lineWidth) / 2, 100 + (50*iterator)), line, font=font, fill=color)
-        lastY = lineHeight
+        draw.multiline_text(((imgWidth - lineWidth) / 2, heightList[sassone] * iterator), line, font=font, fill=color)
+        sassone += 1
 
 # Lists
 # Type, Title, Syllables, Definition, Example
@@ -50,7 +49,7 @@ sizeMultiplier = 2
 heightList = []
 
 
-def textHeight(text, fontFile, fontSize, color=(255, 255, 255, 128), iterator=1):
+def textHeight(text, fontFile, fontSize, color, iterator):
     font = ImageFont.truetype(fontFile, fontSize)
     lines = textwrap.wrap(text, width=60)
     for line in lines:
@@ -59,16 +58,18 @@ def textHeight(text, fontFile, fontSize, color=(255, 255, 255, 128), iterator=1)
 
 def main():
     scraper.getContent()
-
+    sassone = 0
     for i, textString in enumerate(scraper.values):
         # print(i, textString)
-        textHeight(textString, fontsList[i], dimensionsList[i]*sizeMultiplier, color=colorsList[i], iterator=i+1)
-        # drawMultipleLineText(textString, fontsList[i], dimensionsList[i]*sizeMultiplier, color=colorsList[i], iterator=i+1)
+        textHeight(textString, fontsList[i], dimensionsList[i]*sizeMultiplier, colorsList[i], i+1)
+
+    for i, textString in enumerate(scraper.values):
+        drawMultipleLineText(textString, fontsList[i], dimensionsList[i]*sizeMultiplier, sassone, colorsList[i], i+1)
 
     print(heightList)
 
-    #img.save("test.png")
-    #img.show()
+    img.save("test.png")
+    img.show()
 
 if __name__ == "__main__":
     main()

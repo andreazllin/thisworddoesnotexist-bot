@@ -10,7 +10,8 @@ class Scraper:
     
     def stringClean(self, x):
         x= x.replace("\n", "")
-        x = x.replace(" ", "")
+        x = x.strip()
+
         return x
     
     def getContent(self):

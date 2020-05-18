@@ -7,6 +7,7 @@ import os
 
 username, password = "INSTAGRAM USERNAME", "INSTAGRAM PASSWORD"
 postCaption = "INSTAGRAM POST CAPTION"
+scheduleMinutes = 10
 pictureSize = (1080, 1080)
 outputFileName = "outputImage.jpg"
 
@@ -33,7 +34,7 @@ if __name__ == "__main__":
     main()
 
     # Schedule
-    schedule.every(1).minutes.do(main)
+    schedule.every(scheduleMinutes).minutes.do(main)
     while True:
         schedule.run_pending()
         time.sleep(1)

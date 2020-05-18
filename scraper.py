@@ -22,7 +22,6 @@ class Scraper:
     
     def getContent(self):
         self.driver.get("https://www.thisworddoesnotexist.com/")
-        # self.driver.get("https://l.thisworddoesnotexist.com/bN3B")
         self.result = self.driver.page_source
         self.driver.quit()
         self.getDiv()
@@ -35,3 +34,7 @@ class Scraper:
         self.data['definition'] = self.stringClean(soup.find('div', attrs={'id':'definition-definition'}).text)
         self.data['example'] = self.stringClean(soup.find('div', attrs={'id': 'definition-example'}).text)
         self.values = self.data.values()
+        if (len(self.data['word']) > 15):
+            self.driver.refresh()
+            print("Word longer than 15 characters!")
+            self.getContent()

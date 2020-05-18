@@ -90,7 +90,6 @@ def postOnInstagram():
     bot.upload_photo(outputFileName, caption="A word that does not exist; it was invented, defined and used by a machine learning algorithm.")
 
 def main():
-    print("SONO NEL MAIN")
     scraper.getContent()
 
     for i, textString in enumerate(scraper.values):
@@ -106,7 +105,6 @@ def main():
         drawMultipleLineText(
             textString, fontsList[i], dimensionsList[i]*sizeMultiplier, colorsList[i], i+1)
     
-    print("FINITO DI GENERARE L'IMMAGINE")
     img.save(outputFileName)
     postOnInstagram()
     img.close()
